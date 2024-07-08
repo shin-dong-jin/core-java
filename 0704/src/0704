@@ -1,0 +1,14 @@
+JAVA Features
+    Simple
+    Object-Oriented
+    Distributed
+    Multithreaded
+    Dynamic
+    Architecture neutral
+    Portable
+    High performance
+    Robust
+    Secure
+    "Write Once, Run Anywhere"
+
+    MyProgram.java --(Compiler: javac)--> MyProgram.class --(JVM, Interpreter: java)--> MyProgram

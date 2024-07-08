@@ -1,0 +1,10 @@
+public class HelloWorld {
+	public static void main(String args[]) {
+		java.lang.String msg = "Hello, World";
+		java.lang.System.out.printf("msg = %s\n", msg);
+	}
+}
+
+// 머신의 사양: CPU, 메모리, 하드디스크, OS
+// 취업 or 창업
+// 피드백
