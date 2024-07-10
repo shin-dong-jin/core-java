@@ -1,0 +1,8 @@
+1. Abstraction
+    Product
+        field: name(String), quantity(int), sellingPrice(int), buyingPrice(int), shipmentFee(int)
+        method: calcTotalSelling(), calcTotalBuying(), calcProfit(), calc ProfitRate()
+
+2. Encapsulation
+    fields: private
+    methods: public
