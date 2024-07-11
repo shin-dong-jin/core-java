@@ -1,0 +1,40 @@
+개발방법론
+    OOP -> CBD -> SOA -> MSA
+
+Modeling
+    [객체] Car
+        - 상태(속성, state, attribute, property) + 행동(behavior, function, method)
+        - 상태: car.price = 200, car.color = "black"
+            객체 . field
+        - 행동: car.go(90), car.park()
+            객체 . method
+
+    UML
+        StarUML, amaterasuml
+
+Object Oriented Key Features
+    Abstraction, Encapsulation, Inheritance, Polymorphism
+    - 추상화, 은닉화, 상속, 다형성
+
+    Abstraction
+    - 타입을 목적에 맞게 재설계
+
+    Encapsulation
+    - 외부의 조작으로부터 객체를 보호
+    - 필요한 멤버만 개방, 나머지는 숨김
+    - public, private
+    - "All variables should be kept PRIVATE"
+    - 인스턴스 속성은 외부에서 접근 불가, 내부에 있는 메소드로만 접근 가능
+
+    Inheritance
+    - 자바: 단일 클래스 상속
+    - 동종상속: Class extends Class, Interface extends Interface
+    - 이종상속: Class implements Interface
+    - 상속이 안되는 4가지
+        - [Overshadow] Superclass / Subclass 변수명이 일치할 때
+        - [Override] Superclass / Subclass 메소드 시그니처가 일치할 때
+
+Constructor
+    - 리턴타입이 없다
+    - 클래스 이름과 똑같다
+    - 객체를 생성할 때만 호출한다
