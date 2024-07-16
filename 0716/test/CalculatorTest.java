@@ -2,8 +2,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 class CalculatorTest {
     private Calculator calculator;
@@ -13,32 +13,30 @@ class CalculatorTest {
         this.calculator = new Calculator();
     }
 
+    @Disabled
     @Test
     void test() {
         assertNotNull(this.calculator);
     }
 
-    @Disabled
     @Test
     void add() {
-        fail("Not yet implemented");
+//        assertEquals(8, this.calculator.add(3, 5));
+        assertThat(this.calculator.add(3, 5)).isEqualTo(8);
     }
 
-    @Disabled
     @Test
     void subtract() {
-        fail("Not yet implemented");
+        assertEquals(5, this.calculator.subtract(8, 3));
     }
 
-    @Disabled
     @Test
     void multiply() {
-        fail("Not yet implemented");
+        assertEquals(24, this.calculator.multiply(6, 4));
     }
 
-    @Disabled
     @Test
     void divide() {
-        fail("Not yet implemented");
+        assertEquals(3, this.calculator.divide(24, 6) );
     }
 }

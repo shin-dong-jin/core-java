@@ -1,0 +1,14 @@
+[CLASS]
+public class Season {
+    private String spring, summer, fall, winter;
+}
+
+[INTERFACE]
+interface Season {
+    String spring, summer, fall, winter;
+}
+
+[ENUM]
+public enum Season {
+    SPRING, SUMMER, FALL, WINTER;
+}
