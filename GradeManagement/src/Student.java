@@ -84,4 +84,10 @@ public class Student {
     public void setGrade(char grade) {
         this.grade = grade;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%-5s\t%7s\t%5d\t%5d\t%5d\t%5d\t%5d\t%8.1f\t%5c%n",
+                this.studentID, this.name, this.kor, this.eng, this.math, this.edp, this.total, this.avg, this.grade);
+    }
 }

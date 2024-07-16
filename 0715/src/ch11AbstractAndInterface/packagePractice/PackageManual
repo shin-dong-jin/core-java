@@ -1,0 +1,21 @@
+package kr.seoul.sesac.util.libs; ----> import kr.seoul.sesac.util.libs.Finance;
+
+방법1: CLI
+1. .class 컴파일
+    javac -d [.java 컴파일 경로] Finance.java
+
+2. javac 실행
+    javac -cp [.class 경로] Main.java
+
+3. java 실행
+    java .;C:/;D:/ [시작점] Main
+
+방법2: 환경변수 등록
+    %CLASSPATH% = .;C:/
+
+방법3: .jar 압축
+    jar cvf [이름.jar] [경로]
+    "환경변수 반드시 확인"
+
+    인텔리제이 환경변수 .jar 추가하는법
+    File - Project Structure - Dependencies - add(+)
