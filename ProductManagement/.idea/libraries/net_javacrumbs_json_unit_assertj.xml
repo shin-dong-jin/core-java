@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="net.javacrumbs.json.unit.assertj" type="repository">
+    <properties maven-id="net.javacrumbs.json-unit:json-unit-assertj:3.0.0" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/net/javacrumbs/json-unit/json-unit-assertj/3.0.0/json-unit-assertj-3.0.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/javacrumbs/json-unit/json-unit-core/3.0.0/json-unit-core-3.0.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/2.2/hamcrest-core-2.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/assertj/assertj-core/3.24.2/assertj-core-3.24.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/bytebuddy/byte-buddy/1.12.21/byte-buddy-1.12.21.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/javacrumbs/json-unit/json-unit-json-path/3.0.0/json-unit-json-path-3.0.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/jayway/jsonpath/json-path/2.8.0/json-path-2.8.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/minidev/json-smart/2.4.10/json-smart-2.4.10.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/net/minidev/accessors-smart/2.4.9/accessors-smart-2.4.9.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/ow2/asm/asm/9.3/asm-9.3.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
