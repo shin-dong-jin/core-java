@@ -7,7 +7,7 @@ public class JDBCDemo1 {
 
     public static void main(String[] args) {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("");
         } catch (ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }
