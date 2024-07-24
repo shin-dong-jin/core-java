@@ -13,7 +13,7 @@ import java.sql.*;
 public class JDBCDemo {
     public static void main(String[] args) {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("");
             System.out.println("Class Found");
         } catch (ClassNotFoundException e) {
             System.out.println("Class Not Found");
@@ -22,8 +22,8 @@ public class JDBCDemo {
 //        DriverManager.registerDriver();
         Connection connection = null;
         try {
-            String url = "jdbc:mysql://127.0.0.1:3306/mycompany";
-            connection = DriverManager.getConnection(url, "root", "mymysql");
+            String url = "";
+            connection = DriverManager.getConnection(url, "", "");
             System.out.println("Connection Established");
         } catch (SQLException e) {
             System.out.println("Connection Failed");

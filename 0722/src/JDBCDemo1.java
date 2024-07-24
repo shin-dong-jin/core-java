@@ -1,9 +1,9 @@
 import java.sql.*;
 
 public class JDBCDemo1 {
-    private static final String URL = "jdbc:mysql://127.0.0.1:3306/mycompany";
-    private static final String ID = "root";
-    private static final String PASS = "mymysql";
+    private static final String URL = "";
+    private static final String ID = "";
+    private static final String PASS = "";
 
     public static void main(String[] args) {
         try {
