@@ -17,6 +17,8 @@ public class PatientDAOImpl implements PatientDAO {
 
     @Override
     public boolean createPatient(PatientVO patient) throws SQLException {
+        DBConnection dbConnection = new DBConnection();
+        this.connection = dbConnection.getConnection(); // 1 2 3
         Statement statement = connection.createStatement(); // 4
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("INSERT INTO patient ")
