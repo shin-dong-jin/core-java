@@ -1,16 +1,24 @@
 package com.example.view;
 
+import com.example.controller.CalcController;
 import com.example.controller.InsertController;
+import com.example.controller.ReadAllController;
+import com.example.controller.ReadController;
 import com.example.model.PatientVO;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class PatientView {
     private InsertController insertController;
+    private ReadController readController;
+    private ReadAllController readAllController;
     private Scanner scanner;
 
     public PatientView() {
         insertController = new InsertController();
+        readController = new ReadController();
+        readAllController = new ReadAllController();
         scanner = new Scanner(System.in);
         Outer: while (true) {
             switch (showMenu()) {
@@ -18,8 +26,10 @@ public class PatientView {
                     insertMenu();
                     break;
                 case 2:
+                    readMenu();
                     break;
                 case 3:
+                    readAllMenu();
                     break;
                 case 4:
                     break;
@@ -50,6 +60,49 @@ public class PatientView {
             System.out.println("환자 등록 성공");
         } else {
             System.out.println("환자 등록 실패");
+        }
+    }
+
+    private void readMenu() {
+        System.out.println("환자 검색 메뉴");
+        System.out.print("환자 등록 번호: ");
+        int patientNumber = scanner.nextInt();
+        PatientVO patient = readController.getPatient(patientNumber);
+
+        if(patient == null) {
+            System.out.println("환자를 조회할 수 없습니다.");
+        } else {
+            System.out.println(patient.getNumber() + "번 환자 조회 결과");
+            System.out.println("환자 등록 번호: " + patient.getNumber());
+            System.out.println("진료 코드: " + patient.getCode());
+            System.out.println("입원 일수: " + patient.getDays());
+            System.out.println("환자 나이: " + patient.getAge());
+            System.out.println("진료 과: " + patient.getDept());
+            System.out.println("진료비: " + patient.getOperFee());
+            System.out.println("입원비: " + patient.getHospitalFee());
+            System.out.println("병원비: " + patient.getMoney());
+        }
+    }
+
+    private void readAllMenu() {
+        System.out.println("환자 전체 검색 메뉴");
+        List<PatientVO> patients = readAllController.getAllPatients();
+
+        if (patients == null) {
+            System.out.println("환자를 조회할 수 없습니다.");
+        } else {
+            for(PatientVO patient : patients) {
+                System.out.println("[" + patient.getNumber() + "번 환자]");
+                System.out.println("환자 등록 번호: " + patient.getNumber());
+                System.out.println("진료 코드: " + patient.getCode());
+                System.out.println("입원 일수: " + patient.getDays());
+                System.out.println("환자 나이: " + patient.getAge());
+                System.out.println("진료 과: " + patient.getDept());
+                System.out.println("진료비: " + patient.getOperFee());
+                System.out.println("입원비: " + patient.getHospitalFee());
+                System.out.println("병원비: " + patient.getMoney());
+                System.out.println();
+            }
         }
     }
 

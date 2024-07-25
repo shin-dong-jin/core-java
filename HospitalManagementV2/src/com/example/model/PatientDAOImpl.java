@@ -1,8 +1,10 @@
 package com.example.model;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PatientDAOImpl implements PatientDAO {
@@ -35,13 +37,36 @@ public class PatientDAOImpl implements PatientDAO {
     }
 
     @Override
-    public PatientVO readPatient(int patientNumber) {
-        return null;
+    public PatientVO readPatient(int patientNumber) throws SQLException {
+        DBConnection dbConnection = new DBConnection();
+        this.connection = dbConnection.getConnection();
+        Statement statement = connection.createStatement();
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("SELECT * FROM patient WHERE number = ").append(patientNumber).append(";");
+        ResultSet resultSet = statement.executeQuery(queryBuilder.toString());
+        resultSet.next();
+        PatientVO patient = new PatientVO(resultSet.getInt("number"),resultSet.getString("code"),
+                resultSet.getInt("days"), resultSet.getInt("age"));
+        patient.setDept(resultSet.getString("dept"));
+        patient.setOperFee(resultSet.getInt("operfee"));
+        patient.setHospitalFee(resultSet.getInt("hospitalfee"));
+        patient.setMoney(resultSet.getInt("money"));
+        DBClose.dbClose(connection, statement);
+        return patient;
     }
 
     @Override
-    public List<PatientVO> readAllPatients() {
-        return null;
+    public List<PatientVO> readAllPatients() throws SQLException {
+        DBConnection dbConnection = new DBConnection();
+        this.connection = dbConnection.getConnection();
+        Statement statement = connection.createStatement();
+        List<PatientVO> patients = new ArrayList<>();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM patient;");
+        while (resultSet.next()) {
+            patients.add(readPatient(resultSet.getInt("number")));
+        }
+        DBClose.dbClose(connection, statement);
+        return patients;
     }
 
     @Override

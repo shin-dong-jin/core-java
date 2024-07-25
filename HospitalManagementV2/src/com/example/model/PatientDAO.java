@@ -16,13 +16,13 @@ public interface PatientDAO {
      * @param patientNumber
      * @return 해당 환자 한 명
      */
-    PatientVO readPatient(int patientNumber);
+    PatientVO readPatient(int patientNumber) throws SQLException;
 
     /**
      * 지금까지 등록된 모든 환자 리스트를 반환
      * @return 환자형 리스트
      */
-    List<PatientVO> readAllPatients();
+    List<PatientVO> readAllPatients() throws SQLException;
 
     /**
      * 수정할 환자 정보를 입력받아서 수정 성공하면 true 리턴, 실패하면 false 리턴
