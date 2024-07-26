@@ -48,7 +48,7 @@ public class PatientView {
     }
 
     private void insertMenu() {
-        System.out.println("환자 등록 메뉴");
+        System.out.println("[환자 등록 메뉴]");
         System.out.print("환자 등록 번호: ");
         int number = scanner.nextInt();
         System.out.print("진료 코드: ");
@@ -64,19 +64,19 @@ public class PatientView {
         } else {
             System.out.println("환자 등록 실패");
         }
+        System.out.println();
     }
 
     private void readMenu() {
-        System.out.println("환자 검색 메뉴");
+        System.out.println("[환자 검색 메뉴]");
         System.out.print("환자 등록 번호: ");
         int patientNumber = scanner.nextInt();
         PatientVO patient = readController.getPatient(patientNumber);
 
         if(patient == null) {
-            System.out.println("환자를 조회할 수 없습니다.");
+            System.out.println("환자 조회 실패");
         } else {
             System.out.println(patient.getNumber() + "번 환자 조회 결과");
-            System.out.println("환자 등록 번호: " + patient.getNumber());
             System.out.println("진료 코드: " + patient.getCode());
             System.out.println("입원 일수: " + patient.getDays());
             System.out.println("환자 나이: " + patient.getAge());
@@ -85,33 +85,32 @@ public class PatientView {
             System.out.println("입원비: " + patient.getHospitalFee());
             System.out.println("진료비: " + patient.getMoney());
         }
+        System.out.println();
     }
 
     private void readAllMenu() {
-        System.out.println("환자 전체 검색 메뉴");
+        System.out.println("[환자 목록 메뉴]");
         List<PatientVO> patients = readAllController.getAllPatients();
 
         if (patients == null) {
-            System.out.println("환자를 조회할 수 없습니다.");
+            System.out.println("목록 조회 실패");
         } else {
-            System.out.println("번호\t진료코드\t입원일\t나이\t진찰부서\t진찰비\t입원비\t진료비");
+            System.out.println("번호\t진찰부서\t진찰비\t입원비\t진료비");
             StringBuilder builder = new StringBuilder();
             for(PatientVO patient : patients) {
-                builder.append(patient.getNumber()).append("\t\t\t")
-                                .append(patient.getCode()).append("\t\t\t")
-                                .append(patient.getDays()).append("\t\t")
-                                .append(patient.getAge()).append("\t\t")
-                                .append(patient.getDept()).append("\t")
+                builder.append(patient.getNumber()).append("\t\t")
+                                .append(patient.getDept()).append("\t\t")
                                 .append(patient.getOperFee()).append("\t")
                                 .append(patient.getHospitalFee()).append("\t")
                                 .append(patient.getMoney()).append("\n");
             }
             System.out.println(builder);
         }
+        System.out.println();
     }
 
     private void updateMenu() {
-        System.out.println("환자 수정 메뉴");
+        System.out.println("[환자 수정 메뉴]");
         System.out.print("환자 등록 번호: ");
         int patientNumber = scanner.nextInt();
         System.out.print("진료 코드: ");
@@ -128,10 +127,11 @@ public class PatientView {
         } else {
             System.out.println("환자 수정 실패");
         }
+        System.out.println();
     }
 
     private void deleteMenu() {
-        System.out.println("환자 삭제 메뉴");
+        System.out.println("[환자 삭제 메뉴]");
         System.out.print("환자 등록 번호: ");
         int patientNumber = scanner.nextInt();
         
@@ -140,20 +140,23 @@ public class PatientView {
         } else {
             System.out.println("환자 삭제 실패");
         }
+        System.out.println();
     }
 
     private int showMenu() {
-        System.out.println("┌----------------------------------------┐");
-        System.out.println("│    새싹 정형외과 환자 관리 프로그램    │");
-        System.out.println("└----------------------------------------┘");
+        System.out.println("                    ┌----------------------------------------┐");
+        System.out.println("                    │    새싹 정형외과 환자 관리 프로그램    │");
+        System.out.println("                    └----------------------------------------┘");
         System.out.print("1. 환자 등록  ");
         System.out.print("2. 환자 검색  ");
         System.out.print("3. 환자 목록  ");
         System.out.print("4. 환자 수정  ");
         System.out.print("5. 환자 삭제  ");
         System.out.println("99. 프로그램 종료");
-        System.out.println("===========================================================");
+        System.out.println("========================================================================================");
         System.out.print("원하시는 메뉴 번호를 선택해 주세요>> ");
-        return scanner.nextInt();
+        int choice = scanner.nextInt();
+        System.out.println();
+        return choice;
     }
 }

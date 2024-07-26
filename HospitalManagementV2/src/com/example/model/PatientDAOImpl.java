@@ -32,7 +32,6 @@ public class PatientDAOImpl implements PatientDAO {
                         .append(patient.getHospitalFee()).append(",")
                         .append(patient.getMoney()).append(");");
 
-        System.out.println(queryBuilder);
         int su = statement.executeUpdate(queryBuilder.toString()); // 5
         DBClose.dbClose(connection, statement);
         return su == 1;
