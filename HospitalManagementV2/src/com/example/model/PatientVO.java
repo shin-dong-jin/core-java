@@ -71,5 +71,31 @@ public class PatientVO {
                 number, dept, operFee, hospitalFee, money);
     }
 
+    public String getInsertQuery() {
+        StringBuilder query = new StringBuilder();
+        query.append("INSERT INTO patient ")
+                .append("VALUES(")
+                .append(number).append(",")
+                .append("'").append(code).append("',")
+                .append(days).append(",")
+                .append(age).append(",")
+                .append("'").append(dept).append("',")
+                .append(operFee).append(",")
+                .append(hospitalFee).append(",")
+                .append(money).append(");");
+        return query.toString();
+    }
 
+    public String getUpdateQuery() {
+        StringBuilder query = new StringBuilder();
+        query.append("UPDATE patient SET ")
+                .append("code=").append("'").append(code).append("',")
+                .append("days=").append(days).append(",")
+                .append("dept=").append("'").append(dept).append("',")
+                .append("operfee=").append(operFee).append(",")
+                .append("hospitalfee=").append(hospitalFee).append(",")
+                .append("money=").append(money)
+                .append(" WHERE number=").append(number).append(";");
+        return query.toString();
+    }
 }

@@ -13,7 +13,7 @@ public class ReadAllController {
         patientDAO = new PatientDAOImpl();
     }
 
-    public List<PatientVO> getAllPatients() {
+    public List<PatientVO> readAll() {
         List<PatientVO> patients = null;
         try {
             patients = patientDAO.readAllPatients();

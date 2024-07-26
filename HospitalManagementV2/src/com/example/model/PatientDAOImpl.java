@@ -1,5 +1,7 @@
 package com.example.model;
 
+import com.example.utils.QueryBuilder;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,20 +16,7 @@ public class PatientDAOImpl implements PatientDAO {
     public boolean createPatient(PatientVO patient) throws SQLException {
         connection = new DBConnection().getConnection(); // 1 2 3
         Statement statement = connection.createStatement(); // 4
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("INSERT INTO patient ")
-                        .append("VALUES(")
-                        .append(patient.getNumber()).append(",")
-                        .append("'").append(patient.getCode()).append("',")
-                        .append(patient.getDays()).append(",")
-                        .append(patient.getAge()).append(",")
-                        .append("'").append(patient.getDept()).append("',")
-                        .append(patient.getOperFee()).append(",")
-                        .append(patient.getHospitalFee()).append(",")
-                        .append(patient.getMoney()).append(");");
-
-        int result = statement.executeUpdate(queryBuilder.toString()); // 5
+        int result = statement.executeUpdate(QueryBuilder.getInsertQuery(patient)); // 5
         DBClose.dbClose(connection, statement);
         return result == 1;
     }
@@ -36,10 +25,7 @@ public class PatientDAOImpl implements PatientDAO {
     public PatientVO readPatient(int patientNumber) throws SQLException {
         connection = new DBConnection().getConnection();
         Statement statement = connection.createStatement();
-
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("SELECT * FROM patient WHERE number = ").append(patientNumber).append(";");
-        ResultSet resultSet = statement.executeQuery(queryBuilder.toString());
+        ResultSet resultSet = statement.executeQuery(QueryBuilder.getReadQuery(patientNumber));
         if (!resultSet.next()) {
             return null;
         }
@@ -59,7 +45,7 @@ public class PatientDAOImpl implements PatientDAO {
         connection = new DBConnection().getConnection();
         Statement statement = connection.createStatement();
         List<PatientVO> patients = new ArrayList<>();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM patient ORDER BY number;");
+        ResultSet resultSet = statement.executeQuery(QueryBuilder.getReadAllQuery());
         while (resultSet.next()) {
             PatientVO patient = new PatientVO(resultSet.getInt("number"), resultSet.getString("code"),
                                                 resultSet.getInt("days"), resultSet.getInt("age"));
@@ -78,16 +64,7 @@ public class PatientDAOImpl implements PatientDAO {
         DBConnection dbConnection = new DBConnection();
         connection = dbConnection.getConnection();
         Statement statement = connection.createStatement();
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("UPDATE patient SET ")
-                .append("code=").append("'").append(patient.getCode()).append("',")
-                .append("days=").append(patient.getDays()).append(",")
-                .append("dept=").append("'").append(patient.getDept()).append("',")
-                .append("operfee=").append(patient.getOperFee()).append(",")
-                .append("hospitalfee=").append(patient.getHospitalFee()).append(",")
-                .append("money=").append(patient.getMoney())
-                .append(" WHERE number=").append(patient.getNumber()).append(";");
-        int result = statement.executeUpdate(queryBuilder.toString());
+        int result = statement.executeUpdate(QueryBuilder.getUpdateQuery(patient));
         DBClose.dbClose(connection, statement);
         return result == 1;
     }
@@ -96,9 +73,7 @@ public class PatientDAOImpl implements PatientDAO {
     public boolean deletePatient(int patientNumber) throws SQLException {
         connection = new DBConnection().getConnection();
         Statement statement = connection.createStatement();
-        StringBuilder queryBuilder = new StringBuilder();
-        queryBuilder.append("DELETE FROM patient WHERE number=").append(patientNumber).append(";");
-        int result = statement.executeUpdate(queryBuilder.toString());
+        int result = statement.executeUpdate(QueryBuilder.getDeleteQuery(patientNumber));
         DBClose.dbClose(connection, statement);
         return result == 1;
     }

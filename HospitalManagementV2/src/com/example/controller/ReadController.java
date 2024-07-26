@@ -13,7 +13,7 @@ public class ReadController {
         patientDAO = new PatientDAOImpl();
     }
 
-    public PatientVO getPatient(int patienNumber) {
+    public PatientVO read(int patienNumber) {
         PatientVO patient = null;
         try {
             patient = patientDAO.readPatient(patienNumber);
