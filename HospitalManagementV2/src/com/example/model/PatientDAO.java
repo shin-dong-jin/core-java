@@ -29,7 +29,7 @@ public interface PatientDAO {
      * @param patient
      * @return 성공여부
      */
-    boolean updatePatient(PatientVO patient);
+    boolean updatePatient(PatientVO patient) throws SQLException;
 
     /**
      * 환자 등록 번호를 입력받아서 해당 환자를 삭제한다. 

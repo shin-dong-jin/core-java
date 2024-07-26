@@ -72,8 +72,22 @@ public class PatientDAOImpl implements PatientDAO {
     }
 
     @Override
-    public boolean updatePatient(PatientVO patient) {
-        return false;
+    public boolean updatePatient(PatientVO patient) throws SQLException {
+        DBConnection dbConnection = new DBConnection();
+        connection = dbConnection.getConnection();
+        Statement statement = connection.createStatement();
+        StringBuilder queryBuilder = new StringBuilder();
+        queryBuilder.append("UPDATE patient SET ")
+                .append("number=").append(patient.getNumber()).append(",")
+                .append("code=").append(patient.getCode()).append(",")
+                .append("days=").append(patient.getDays()).append(",")
+                .append("dept=").append(patient.getDept()).append(",")
+                .append("operfee=").append(patient.getOperFee()).append(",")
+                .append("hospitalfee=").append(patient.getHospitalFee()).append(",")
+                .append("money=").append(patient.getMoney()).append(";");
+        int result = statement.executeUpdate(queryBuilder.toString());
+        DBClose.dbClose(connection, statement);
+        return result == 1;
     }
 
     @Override

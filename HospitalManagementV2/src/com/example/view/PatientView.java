@@ -1,9 +1,6 @@
 package com.example.view;
 
-import com.example.controller.CalcController;
-import com.example.controller.InsertController;
-import com.example.controller.ReadAllController;
-import com.example.controller.ReadController;
+import com.example.controller.*;
 import com.example.model.PatientVO;
 
 import java.util.List;
@@ -13,12 +10,14 @@ public class PatientView {
     private InsertController insertController;
     private ReadController readController;
     private ReadAllController readAllController;
+    private UpdateController updateController;
     private Scanner scanner;
 
     public PatientView() {
         insertController = new InsertController();
         readController = new ReadController();
         readAllController = new ReadAllController();
+        updateController = new UpdateController();
         scanner = new Scanner(System.in);
         Outer: while (true) {
             switch (showMenu()) {
@@ -32,6 +31,7 @@ public class PatientView {
                     readAllMenu();
                     break;
                 case 4:
+                    updateMenu();
                     break;
                 case 5:
                     break;
@@ -103,6 +103,26 @@ public class PatientView {
                 System.out.println("병원비: " + patient.getMoney());
                 System.out.println();
             }
+        }
+    }
+
+    private void updateMenu() {
+        System.out.println("환자 수정 메뉴");
+        System.out.print("환자 등록 번호: ");
+        int patientNumber = scanner.nextInt();
+        System.out.print("진료 코드: ");
+        String code = scanner.next();
+        System.out.print("입원 일수: ");
+        int days = scanner.nextInt();
+        System.out.print("환자 나이: ");
+        int age = scanner.nextInt();
+
+        PatientVO patient = new PatientVO(patientNumber, code, days, age);
+        new CalcController(patient);
+        if(updateController.update(patient)) {
+            System.out.println("환자 수정 성공");
+        } else {
+            System.out.println("환자 수정 실패");
         }
     }
 
