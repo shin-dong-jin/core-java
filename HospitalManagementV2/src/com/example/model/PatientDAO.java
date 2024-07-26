@@ -36,5 +36,5 @@ public interface PatientDAO {
      * @param patientNumber
      * @return 성공여부
      */
-    boolean deletePatient(int patientNumber);
+    boolean deletePatient(int patientNumber) throws SQLException;
 }

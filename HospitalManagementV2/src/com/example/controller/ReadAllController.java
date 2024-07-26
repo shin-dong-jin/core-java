@@ -14,11 +14,12 @@ public class ReadAllController {
     }
 
     public List<PatientVO> getAllPatients() {
+        List<PatientVO> patients = null;
         try {
-            return patientDAO.readAllPatients();
+            patients = patientDAO.readAllPatients();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return null;
+        return patients;
     }
 }

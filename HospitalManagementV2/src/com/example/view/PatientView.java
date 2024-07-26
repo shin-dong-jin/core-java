@@ -11,6 +11,7 @@ public class PatientView {
     private ReadController readController;
     private ReadAllController readAllController;
     private UpdateController updateController;
+    private DeleteController deleteController;
     private Scanner scanner;
 
     public PatientView() {
@@ -18,6 +19,7 @@ public class PatientView {
         readController = new ReadController();
         readAllController = new ReadAllController();
         updateController = new UpdateController();
+        deleteController = new DeleteController();
         scanner = new Scanner(System.in);
         Outer: while (true) {
             switch (showMenu()) {
@@ -34,6 +36,7 @@ public class PatientView {
                     updateMenu();
                     break;
                 case 5:
+                    deleteMenu();
                     break;
                 case 99:
                     break Outer;
@@ -77,10 +80,10 @@ public class PatientView {
             System.out.println("진료 코드: " + patient.getCode());
             System.out.println("입원 일수: " + patient.getDays());
             System.out.println("환자 나이: " + patient.getAge());
-            System.out.println("진료 과: " + patient.getDept());
-            System.out.println("진료비: " + patient.getOperFee());
+            System.out.println("진찰부서: " + patient.getDept());
+            System.out.println("진찰비: " + patient.getOperFee());
             System.out.println("입원비: " + patient.getHospitalFee());
-            System.out.println("병원비: " + patient.getMoney());
+            System.out.println("진료비: " + patient.getMoney());
         }
     }
 
@@ -91,18 +94,19 @@ public class PatientView {
         if (patients == null) {
             System.out.println("환자를 조회할 수 없습니다.");
         } else {
+            System.out.println("번호\t진료코드\t입원일\t나이\t진찰부서\t진찰비\t입원비\t진료비");
+            StringBuilder builder = new StringBuilder();
             for(PatientVO patient : patients) {
-                System.out.println("[" + patient.getNumber() + "번 환자]");
-                System.out.println("환자 등록 번호: " + patient.getNumber());
-                System.out.println("진료 코드: " + patient.getCode());
-                System.out.println("입원 일수: " + patient.getDays());
-                System.out.println("환자 나이: " + patient.getAge());
-                System.out.println("진료 과: " + patient.getDept());
-                System.out.println("진료비: " + patient.getOperFee());
-                System.out.println("입원비: " + patient.getHospitalFee());
-                System.out.println("병원비: " + patient.getMoney());
-                System.out.println();
+                builder.append(patient.getNumber()).append("\t\t\t")
+                                .append(patient.getCode()).append("\t\t\t")
+                                .append(patient.getDays()).append("\t\t")
+                                .append(patient.getAge()).append("\t\t")
+                                .append(patient.getDept()).append("\t")
+                                .append(patient.getOperFee()).append("\t")
+                                .append(patient.getHospitalFee()).append("\t")
+                                .append(patient.getMoney()).append("\n");
             }
+            System.out.println(builder);
         }
     }
 
@@ -123,6 +127,18 @@ public class PatientView {
             System.out.println("환자 수정 성공");
         } else {
             System.out.println("환자 수정 실패");
+        }
+    }
+
+    private void deleteMenu() {
+        System.out.println("환자 삭제 메뉴");
+        System.out.print("환자 등록 번호: ");
+        int patientNumber = scanner.nextInt();
+        
+        if(deleteController.delete(patientNumber)) {
+            System.out.println("환자 삭제 성공");
+        } else {
+            System.out.println("환자 삭제 실패");
         }
     }
 
