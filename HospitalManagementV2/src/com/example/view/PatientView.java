@@ -41,13 +41,13 @@ public class PatientView {
                     deleteMenu();
                     break;
                 case 99:
+                    writer.println("Program is over...");
                     break Outer;
                 default:
 //                    JOptionPane.showMessageDialog(JOptionPane.getRootFrame().getComponent(0), "잘못된 번호를 입력하셨습니다.");
                     writer.println("잘못된 번호를 입력하셨습니다.");
             }
         }
-
         reader.close();
         writer.close();
     }
