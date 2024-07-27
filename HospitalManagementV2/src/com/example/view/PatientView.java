@@ -1,6 +1,6 @@
 package com.example.view;
 
-import com.example.controller.*;
+import com.example.controller.patient.*;
 import com.example.model.PatientVO;
 
 import java.util.List;
@@ -11,8 +11,7 @@ public class PatientView {
     private ReadAllController readAllController;
     private UpdateController updateController;
     private DeleteController deleteController;
-    private Reader reader;
-    private Writer writer;
+    private ConsoleView consoleView;
 
     public PatientView() {
         insertController = new InsertController();
@@ -20,8 +19,7 @@ public class PatientView {
         readAllController = new ReadAllController();
         updateController = new UpdateController();
         deleteController = new DeleteController();
-        reader = new ConsoleReader();
-        writer = new ConsoleWriter();
+        consoleView = new ConsoleView();
 
         Outer: while (true) {
             switch (showMenu()) {
@@ -41,116 +39,48 @@ public class PatientView {
                     deleteMenu();
                     break;
                 case 99:
-                    writer.println("Program is over...");
+                    consoleView.terminateProgram();
+                    consoleView.closeReader();
+                    consoleView.closeWriter();
                     break Outer;
                 default:
 //                    JOptionPane.showMessageDialog(JOptionPane.getRootFrame().getComponent(0), "잘못된 번호를 입력하셨습니다.");
-                    writer.println("잘못된 번호를 입력하셨습니다.");
+                    consoleView.wrongChoice();
             }
         }
-        reader.close();
-        writer.close();
     }
 
     private void insertMenu() {
-        writer.println("[환자 등록 메뉴]");
-        writer.print("환자 등록 번호: ");
-        int number = reader.nextInt();
-        writer.print("진료 코드: ");
-        String code = reader.next();
-        writer.print("입원 일수: ");
-        int days = reader.nextInt();
-        writer.print("환자 나이: ");
-        int age = reader.nextInt();
-
-        PatientVO patient = new PatientVO(number, code, days, age);
-        if (insertController.insert(patient)) {
-            writer.println("환자 등록 성공");
-        } else {
-            writer.println("환자 등록 실패");
-        }
-        writer.println();
+        PatientVO patient = consoleView.insert();
+        consoleView.viewInsertResult(insertController.insert(patient));
     }
 
     private void readMenu() {
-        writer.println("[환자 검색 메뉴]");
-        writer.print("환자 등록 번호: ");
-        int patientNumber = reader.nextInt();
+        int patientNumber = consoleView.read();
         PatientVO patient = readController.read(patientNumber);
-
-        if(patient == null) {
-            writer.println("환자 조회 실패");
-        } else {
-            writer.print(patient.read());
-        }
-        writer.println();
+        consoleView.viewReadResult(patient);
     }
 
     private void readAllMenu() {
-        writer.println("[환자 목록 메뉴]");
         List<PatientVO> patients = readAllController.readAll();
-
-        if (patients == null) {
-            writer.println("목록 조회 실패");
-        } else {
-            writer.println("번호\t진찰부서\t진찰비\t입원비\t진료비");
-            StringBuilder builder = new StringBuilder();
-            for(PatientVO patient : patients) {
-                patient.readAll(builder);
-            }
-            writer.println(builder);
-        }
-        writer.println();
+        consoleView.readAll();
+        consoleView.viewReadAllResult(patients);
     }
 
     private void updateMenu() {
-        writer.println("[환자 수정 메뉴]");
-        writer.print("환자 등록 번호: ");
-        int patientNumber = reader.nextInt();
-        writer.print("진료 코드: ");
-        String code = reader.next();
-        writer.print("입원 일수: ");
-        int days = reader.nextInt();
-        writer.print("환자 나이: ");
-        int age = reader.nextInt();
-
-        PatientVO patient = new PatientVO(patientNumber, code, days, age);
+        PatientVO patient = consoleView.update();
         new CalcController(patient);
-        if(updateController.update(patient)) {
-            writer.println("환자 수정 성공");
-        } else {
-            writer.println("환자 수정 실패");
-        }
-        writer.println();
+        consoleView.viewUpdateResult(updateController.update(patient));
     }
 
     private void deleteMenu() {
-        writer.println("[환자 삭제 메뉴]");
-        writer.print("환자 등록 번호: ");
-        int patientNumber = reader.nextInt();
-        
-        if(deleteController.delete(patientNumber)) {
-            writer.println("환자 삭제 성공");
-        } else {
-            writer.println("환자 삭제 실패");
-        }
-        writer.println();
+        int patientNumber = consoleView.delete();
+        consoleView.viewDeleteResult(deleteController.delete(patientNumber));
     }
 
     private int showMenu() {
-        writer.println("                    ┌----------------------------------------┐");
-        writer.println("                    │    새싹 정형외과 환자 관리 프로그램    │");
-        writer.println("                    └----------------------------------------┘");
-        writer.print("1. 환자 등록  ");
-        writer.print("2. 환자 검색  ");
-        writer.print("3. 환자 목록  ");
-        writer.print("4. 환자 수정  ");
-        writer.print("5. 환자 삭제  ");
-        writer.println("99. 프로그램 종료");
-        writer.println("========================================================================================");
-        writer.print("원하시는 메뉴 번호를 선택해 주세요>> ");
-        int choice = reader.nextInt();
-        writer.println();
+        int choice = consoleView.start();
+        consoleView.newLine();
         return choice;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.controller.patient;
 
 import com.example.model.PatientDAO;
 import com.example.model.PatientDAOImpl;

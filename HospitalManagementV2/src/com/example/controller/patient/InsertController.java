@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.controller.patient;
 
 import com.example.model.PatientDAO;
 import com.example.model.PatientDAOImpl;
@@ -6,17 +6,18 @@ import com.example.model.PatientVO;
 
 import java.sql.SQLException;
 
-public class UpdateController {
+public class InsertController {
     private PatientDAO patientDAO;
 
-    public UpdateController() {
+    public InsertController() {
         patientDAO = new PatientDAOImpl();
     }
 
-    public boolean update(PatientVO patient) {
+    public boolean insert(PatientVO patient) {
         boolean result = false;
         try {
-            result = patientDAO.updatePatient(patient);
+            new CalcController(patient);
+            result = patientDAO.createPatient(patient);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

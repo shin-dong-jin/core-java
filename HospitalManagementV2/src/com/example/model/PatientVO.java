@@ -1,5 +1,7 @@
 package com.example.model;
 
+import static com.example.utils.Schema.*;
+
 public class PatientVO {
     private int number;    //환자번호
     private String code;    //진료코드
@@ -73,14 +75,14 @@ public class PatientVO {
 
     public String read() {
         StringBuilder builder = new StringBuilder();
-        builder.append(number).append("번 환자 조회 결과").append(System.lineSeparator())
-                        .append("진료 코드: ").append(code).append(System.lineSeparator())
-                        .append("입원 일수: ").append(days).append(System.lineSeparator())
-                        .append("환자 나이: ").append(age).append(System.lineSeparator())
-                        .append("진찰 부서: ").append(dept).append(System.lineSeparator())
-                        .append("진찰비: ").append(operFee).append(System.lineSeparator())
-                        .append("입원비: ").append(hospitalFee).append(System.lineSeparator())
-                        .append("진료비: ").append(money).append(System.lineSeparator());
+        builder.append(number).append(NUMBER.read()).append(System.lineSeparator())
+                        .append(CODE.read()).append(": ").append(code).append(System.lineSeparator())
+                        .append(DAYS.read()).append(": ").append(days).append(System.lineSeparator())
+                        .append(AGE.read()).append(": ").append(age).append(System.lineSeparator())
+                        .append(DEPT.read()).append(": ").append(dept).append(System.lineSeparator())
+                        .append(OPERFEE.read()).append(": ").append(operFee).append(System.lineSeparator())
+                        .append(HOSPITALFEE.read()).append(": ").append(hospitalFee).append(System.lineSeparator())
+                        .append(MONEY.read()).append(": ").append(money).append(System.lineSeparator());
         return builder.toString();
     }
 
@@ -110,13 +112,13 @@ public class PatientVO {
     public String getUpdateQuery() {
         StringBuilder query = new StringBuilder();
         query.append("UPDATE patient SET ")
-                .append("code=").append("'").append(code).append("',")
-                .append("days=").append(days).append(",")
-                .append("dept=").append("'").append(dept).append("',")
-                .append("operfee=").append(operFee).append(",")
-                .append("hospitalfee=").append(hospitalFee).append(",")
-                .append("money=").append(money)
-                .append(" WHERE number=").append(number).append(";");
+                .append(CODE).append("='").append(code).append("',")
+                .append(DAYS).append("=").append(days).append(",")
+                .append(DEPT).append("='").append(dept).append("',")
+                .append(OPERFEE).append("=").append(operFee).append(",")
+                .append(HOSPITALFEE).append("=").append(hospitalFee).append(",")
+                .append(MONEY).append("=").append(money)
+                .append(" WHERE ").append(NUMBER).append("=").append(number).append(";");
         return query.toString();
     }
 }

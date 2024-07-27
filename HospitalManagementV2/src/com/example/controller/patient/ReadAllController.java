@@ -1,9 +1,10 @@
-package com.example.controller;
+package com.example.controller.patient;
 
 import com.example.model.PatientDAO;
 import com.example.model.PatientDAOImpl;
 import com.example.model.PatientVO;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class ReadAllController {
@@ -17,7 +18,7 @@ public class ReadAllController {
         List<PatientVO> patients = null;
         try {
             patients = patientDAO.readAllPatients();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return patients;

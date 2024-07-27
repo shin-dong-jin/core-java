@@ -1,26 +1,26 @@
-package com.example.controller;
+package com.example.controller.patient;
 
 import com.example.model.PatientDAO;
 import com.example.model.PatientDAOImpl;
-import com.example.model.PatientVO;
 
 import java.sql.SQLException;
 
-public class InsertController {
-    private PatientDAO patientDAO;
+public class DeleteController {
+    PatientDAO patientDAO;
 
-    public InsertController() {
+    public DeleteController() {
         patientDAO = new PatientDAOImpl();
     }
 
-    public boolean insert(PatientVO patient) {
+    public boolean delete(int patientNumber) {
         boolean result = false;
+
         try {
-            new CalcController(patient);
-            result = patientDAO.createPatient(patient);
+            result = patientDAO.deletePatient(patientNumber);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
         return result;
     }
 }
