@@ -1,4 +1,4 @@
-package com.example.utils;
+package com.example.model;
 
 import java.io.InputStream;
 import java.io.OutputStream;

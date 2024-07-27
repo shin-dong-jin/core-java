@@ -13,13 +13,13 @@ public class PatientView {
     private DeleteController deleteController;
     private ConsoleView consoleView;
 
-    public PatientView() {
+    public PatientView(ConsoleView consoleView) {
         insertController = new InsertController();
         readController = new ReadController();
         readAllController = new ReadAllController();
         updateController = new UpdateController();
         deleteController = new DeleteController();
-        consoleView = new ConsoleView();
+        this.consoleView = consoleView;
 
         Outer: while (true) {
             switch (showMenu()) {

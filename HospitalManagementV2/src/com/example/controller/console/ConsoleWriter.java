@@ -1,6 +1,6 @@
 package com.example.controller.console;
 
-import com.example.utils.Console;
+import com.example.model.Console;
 
 public class ConsoleWriter implements Writer {
 
