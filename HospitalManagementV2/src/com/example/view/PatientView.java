@@ -81,14 +81,7 @@ public class PatientView {
         if(patient == null) {
             writer.println("환자 조회 실패");
         } else {
-            writer.println(patient.getNumber() + "번 환자 조회 결과");
-            writer.println("진료 코드: " + patient.getCode());
-            writer.println("입원 일수: " + patient.getDays());
-            writer.println("환자 나이: " + patient.getAge());
-            writer.println("진찰부서: " + patient.getDept());
-            writer.println("진찰비: " + patient.getOperFee());
-            writer.println("입원비: " + patient.getHospitalFee());
-            writer.println("진료비: " + patient.getMoney());
+            writer.print(patient.read());
         }
         writer.println();
     }
@@ -103,11 +96,7 @@ public class PatientView {
             writer.println("번호\t진찰부서\t진찰비\t입원비\t진료비");
             StringBuilder builder = new StringBuilder();
             for(PatientVO patient : patients) {
-                builder.append(patient.getNumber()).append("\t\t")
-                                .append(patient.getDept()).append("\t\t")
-                                .append(patient.getOperFee()).append("\t")
-                                .append(patient.getHospitalFee()).append("\t")
-                                .append(patient.getMoney()).append("\n");
+                patient.readAll(builder);
             }
             writer.println(builder);
         }

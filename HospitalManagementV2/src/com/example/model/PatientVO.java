@@ -71,6 +71,27 @@ public class PatientVO {
                 number, dept, operFee, hospitalFee, money);
     }
 
+    public String read() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(number).append("번 환자 조회 결과").append(System.lineSeparator())
+                        .append("진료 코드: ").append(code).append(System.lineSeparator())
+                        .append("입원 일수: ").append(days).append(System.lineSeparator())
+                        .append("환자 나이: ").append(age).append(System.lineSeparator())
+                        .append("진찰 부서: ").append(dept).append(System.lineSeparator())
+                        .append("진찰비: ").append(operFee).append(System.lineSeparator())
+                        .append("입원비: ").append(hospitalFee).append(System.lineSeparator())
+                        .append("진료비: ").append(money).append(System.lineSeparator());
+        return builder.toString();
+    }
+
+    public void readAll(StringBuilder builder) {
+        builder.append(number).append("\t\t")
+                .append(dept).append("\t\t")
+                .append(operFee).append("\t")
+                .append(hospitalFee).append("\t")
+                .append(money).append(System.lineSeparator());
+    }
+
     public String getInsertQuery() {
         StringBuilder query = new StringBuilder();
         query.append("INSERT INTO patient ")
