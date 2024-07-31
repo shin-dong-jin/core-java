@@ -6,19 +6,9 @@ import com.example.model.PatientVO;
 import java.util.List;
 
 public class PatientView {
-    private InsertController insertController;
-    private ReadController readController;
-    private ReadAllController readAllController;
-    private UpdateController updateController;
-    private DeleteController deleteController;
     private ConsoleView consoleView;
 
     public PatientView(ConsoleView consoleView) {
-        insertController = new InsertController();
-        readController = new ReadController();
-        readAllController = new ReadAllController();
-        updateController = new UpdateController();
-        deleteController = new DeleteController();
         this.consoleView = consoleView;
 
         Outer: while (true) {
@@ -51,29 +41,34 @@ public class PatientView {
     }
 
     private void insertMenu() {
+        InsertController insertController = new InsertController();
         PatientVO patient = consoleView.insert();
         consoleView.viewInsertResult(insertController.insert(patient));
     }
 
     private void readMenu() {
+        ReadController readController = new ReadController();
         int patientNumber = consoleView.read();
         PatientVO patient = readController.read(patientNumber);
         consoleView.viewReadResult(patient);
     }
 
     private void readAllMenu() {
+        ReadAllController readAllController = new ReadAllController();
         List<PatientVO> patients = readAllController.readAll();
         consoleView.readAll();
         consoleView.viewReadAllResult(patients);
     }
 
     private void updateMenu() {
+        UpdateController updateController = new UpdateController();
         PatientVO patient = consoleView.update();
         new CalcController(patient);
         consoleView.viewUpdateResult(updateController.update(patient));
     }
 
     private void deleteMenu() {
+        DeleteController deleteController = new DeleteController();
         int patientNumber = consoleView.delete();
         consoleView.viewDeleteResult(deleteController.delete(patientNumber));
     }
