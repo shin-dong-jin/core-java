@@ -34,7 +34,6 @@ public class PatientView {
                     consoleView.closeWriter();
                     break Outer;
                 default:
-//                    JOptionPane.showMessageDialog(JOptionPane.getRootFrame().getComponent(0), "잘못된 번호를 입력하셨습니다.");
                     consoleView.wrongChoice();
             }
         }

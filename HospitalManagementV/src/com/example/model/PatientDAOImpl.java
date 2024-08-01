@@ -94,7 +94,7 @@ public class PatientDAOImpl implements PatientDAO {
     @Override
     public boolean deletePatient(int number) throws SQLException {
         //Statement stmt = this.conn.createStatement();
-        String sql = "DELETE FROM Patient WHERE number = ?";  //불완전한 SQL문
+        String sql = "DELETE FROM patient WHERE number = ?";  //불완전한 SQL문
         PreparedStatement pstmt = this.conn.prepareStatement(sql);  //4.
         pstmt.setInt(1, number);   //완전한 SQL 문장.
         int row = pstmt.executeUpdate();   //5
